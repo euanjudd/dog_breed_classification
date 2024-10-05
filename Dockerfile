@@ -36,14 +36,8 @@ COPY . /app
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
-# # Specify the port number the container should expose for Jupyter
-# EXPOSE 8888
+# Specify the port number the container should expose for Jupyter
+EXPOSE 8888
 
-# # Run Jupyter Notebook
-# CMD ["jupyter", "notebook", "--ip='0.0.0.0'", "--port=8888", "--no-browser", "--allow-root"]
-
-# Expose ports for Jupyter and API
-EXPOSE 8888 8000
-
-# Start Jupyter and API server
-CMD ["sh", "-c", "jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root & python src/app.py"]
+# Run Jupyter Notebook
+CMD ["jupyter", "notebook", "--ip='0.0.0.0'", "--port=8888", "--no-browser", "--allow-root"]
